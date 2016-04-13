@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <%= link_to "<i class='fa fa-circle-o-notch"></i>Tim's Site</a>
+        <%= link_to "<i class='fa fa-circle-o-notch></i>Tim's Site".html_safe, root_path, class: 'navbar-brand' %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,8 +19,13 @@
       
       
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'About', about_path %></li>
-        <li><%= link_to 'Sign in', new_user_session_path %></li>
+          <% if current_user %>
+          <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path %></li>
+          <% else %>
+          <li><%= link_to 'About', about_path %></li>
+          <li><%= link_to 'Sign in', new_user_session_path %></li>
+          <% end %>
         
       </ul>
     </div><!-- /.navbar-collapse -->
